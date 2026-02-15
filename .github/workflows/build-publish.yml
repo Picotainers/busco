@@ -1,4 +1,4 @@
-name: Build and Publish Distroless busco
+name: Build and Publish busco
 
 on:
   push:

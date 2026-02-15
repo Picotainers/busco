@@ -1,5 +1,5 @@
 # busco
-Small, distroless-when-possible container for `busco`.
+Small compatibility-focused container for `busco`.
 
 ## how to use
 ```bash
