@@ -24,8 +24,8 @@ jobs:
       - name: Smoke test
         run: |
           set -euo pipefail
-          docker run --rm picotainers-local/busco:smoke --help > help.txt 2>&1
-          grep -Eiq 'busco|usage|help|version|options' help.txt
+          docker run --rm picotainers-local/busco:smoke --help
+          docker run --rm --entrypoint /bin/sh picotainers-local/busco:smoke -c 'command -v busco'
 
   publish:
     needs: test
