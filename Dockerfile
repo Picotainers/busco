@@ -2,6 +2,8 @@ FROM ubuntu:22.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG BUSCO_VERSION=6.1.0
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       build-essential \
@@ -17,8 +19,9 @@ RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+RUN pip install --no-cache-dir biopython matplotlib numpy pandas requests
 
-RUN git clone --depth 1 https://gitlab.com/ezlab/busco.git /tmp/busco && \
+RUN git clone --depth 1 --branch "${BUSCO_VERSION}" https://gitlab.com/ezlab/busco.git /tmp/busco && \
     pip install --no-cache-dir /tmp/busco && \
     rm -rf /tmp/busco
 
